@@ -4,7 +4,8 @@ import Homepage from './pages/homepage'
 import Instructions from './pages/how-to-play';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Body from './pages/Body';
-import Team from './pages/team';
+import Team from './pages/local';
+import Game from './pages/game';
 
 function App() {
   return (
@@ -15,7 +16,8 @@ function App() {
       <Body />
       <main>
         <Routes>
-        <Route path="/team" element={<Team/>} />
+          <Route path="/game" element={<Game/>} />
+        <Route path="/local" element={<Team/>} />
           <Route path="/instructions" element={<Instructions/>} />
           <Route path="/:type?" element={<Homepage/>} />
         </Routes>
