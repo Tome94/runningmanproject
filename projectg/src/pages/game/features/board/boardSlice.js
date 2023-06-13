@@ -1,3 +1,4 @@
+
 const initialState = [
   {id: 0, contents: 'Provider', visible: true, matched: true}, 
   {id: 1, contents: 'Provider', visible: true, matched: true}, 
@@ -12,8 +13,8 @@ const initialState = [
   {id: 10, contents: 'react-redux', visible: true, matched: true}, 
   {id: 11, contents: 'react-redux', visible: true, matched: true}, 
 ];
-
 export const boardReducer = (state = initialState, action) => {
+
   switch (action.type) {
     case 'board/setBoard':
       let setState = [];
@@ -44,6 +45,7 @@ export const boardReducer = (state = initialState, action) => {
       return flipState;
     case 'board/resetCards':
       return state.map(card => ({...card, visible: false}));
+    
     default:
       return state;
   }
@@ -88,6 +90,7 @@ export const flipCard = (id) => {
 }
 
 export const resetCards = (indices) => {
+  console.log('reseting')
   return {
     type: 'board/resetCards'
   }

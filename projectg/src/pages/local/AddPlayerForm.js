@@ -14,7 +14,8 @@ export function AddPlayerForm(props) {
     if(name.length){
     const player = {
       id: generateId(),
-      name: name
+      name: name,
+      score: 0
     }
     props.addPlayer(player)
     setName("")

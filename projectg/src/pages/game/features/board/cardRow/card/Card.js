@@ -1,7 +1,8 @@
 import React from 'react';
 // Add import statements below
 import {useSelector, useDispatch} from 'react-redux'
-import {selectVisibleIDs, flipCard, selectMatchedIDs} from '../../boardSlice'
+import { endTurn } from '../../../turns/turn';
+import {selectVisibleIDs, flipCard, selectMatchedIDs, resetCards} from '../../boardSlice'
 
 let cardLogo = "https://static-assets.codecademy.com/Courses/Learn-Redux/matching-game/codecademy_logo.png";
 
@@ -15,7 +16,13 @@ export const Card = ({ id, contents }) => {
     // Add action dispatch below
     dispatch(flipCard(id))
   };
-
+  const EndTurnHandler = () => {
+    // Add action dispatch below
+    
+    setTimeout(()=>{
+      dispatch(resetCards())
+    },2000)
+  };
   let cardStyle = 'resting'
   let click = () => flipHandler(id);
   
@@ -41,7 +48,12 @@ export const Card = ({ id, contents }) => {
   if (visibleIDs.length === 2) {
     click = () => {};
   }
-
+  //turn the not match red
+  if (visibleIDs.length >= 2 && !matchedIDs.includes(id)){
+    cardStyle = 'no-match'
+    EndTurnHandler()
+    
+  }
   return (
     <button onClick={click} className={`card ${cardStyle}`}>
       {cardText}
