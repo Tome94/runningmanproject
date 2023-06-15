@@ -22,12 +22,13 @@ export const boardReducer = (state = initialState, action) => {
         setState.push({id: index, 
                       contents: element, 
                       visible: false, 
-                      matched: false})
+                      matched: false,
+                      teamMatch: 0})
       );
       return setState;
     case 'board/flipCard':
       let flipState = [...state];
-      const cardID = action.payload;
+      const {cardID, teamID} = action.payload;
       flipState[cardID] = {...state[cardID], visible:true}
       
       const [index1, index2] = flipState
@@ -37,8 +38,8 @@ export const boardReducer = (state = initialState, action) => {
         const card1 = flipState[index1];
         const card2 = flipState[index2];
         if (card1.contents === card2.contents) {
-          flipState[index1] = {...card1, visible: false, matched: true}
-          flipState[index2] = {...card2, visible: false, matched: true}
+          flipState[index1] = {...card1, visible: false, matched: true, teamMatch:teamID}
+          flipState[index2] = {...card2, visible: false, matched: true, teamMatch:teamID}
         }
       } 
 
@@ -47,7 +48,7 @@ export const boardReducer = (state = initialState, action) => {
     case 'board/resetCards':
       return state.map(card => ({...card, visible: false}));
     
-      case 'board/addTeamMatch':
+     /* case 'board/addTeamMatch':
         const { teamID, cardsMatched } = action.payload;
         return state.map((card) => {
           if (cardsMatched.includes(card.id)) {
@@ -55,8 +56,9 @@ export const boardReducer = (state = initialState, action) => {
           }
           return card;
         });
-  
+  */
     default:
+      console.log('Current state:', state);
       return state;
   }
 }
@@ -92,10 +94,10 @@ export const setBoard = () => {
   }
 }
 
-export const flipCard = (id) => {
+export const flipCard = (cardID,teamID) => {
   return {
     type: 'board/flipCard',
-    payload: id
+    payload: {cardID, teamID}
   }
 }
 
@@ -120,4 +122,10 @@ export const selectVisibleIDs = state => state.board
 
 export const selectMatchedIDs = state => state.board
 .filter(card => card.matched)
+.map(card => card.id)
+export const selectTeamOneMatchIds = state => state.board
+.filter(card => card.teamMatch === 1)
+.map(card => card.id)
+export const selectTeamTwoMatchIds = state => state.board
+.filter(card => card.teamMatch === 2)
 .map(card => card.id)

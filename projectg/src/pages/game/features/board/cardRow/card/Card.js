@@ -1,6 +1,7 @@
 import React from 'react';
 // Add import statements below
 import {useSelector, useDispatch} from 'react-redux'
+import { selectCurrentTurn } from '../../../turns/turn';
 import {selectVisibleIDs, flipCard, selectMatchedIDs, resetCards} from '../../boardSlice'
 
 let cardLogo = "https://static-assets.codecademy.com/Courses/Learn-Redux/matching-game/codecademy_logo.png";
@@ -9,11 +10,12 @@ export const Card = ({ id, contents }) => {
   // Add selected data and dispatch variables below
   const visibleIDs = useSelector(selectVisibleIDs)
   const matchedIDs = useSelector(selectMatchedIDs)
+  const teamID = useSelector(selectCurrentTurn)
   const dispatch = useDispatch()
   // flip card action
   const flipHandler = (id) => {
     // Add action dispatch below
-    dispatch(flipCard(id))
+    dispatch(flipCard(id, teamID))
   };
   const EndTurnHandler = () => {
     // Add action dispatch below
@@ -23,7 +25,7 @@ export const Card = ({ id, contents }) => {
     },2000)
   };
   let cardStyle = 'resting'
-  let click = () => flipHandler(id);
+  let click = () => flipHandler(id, teamID);
   
   let cardText = (
     <img src={cardLogo} className="logo-placeholder" alt="Card option" />
