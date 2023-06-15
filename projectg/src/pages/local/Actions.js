@@ -19,3 +19,13 @@ export const removePlayer = (playerIdToRemove, teamNumber) => {
     },
   };
 };
+export const updateTeamScore = (teamID, newScore) => {
+  return {
+    type: 'UPDATE_TEAM_SCORE',
+    payload: {
+      teamID,
+      newScore,
+    },
+  };
+};
+

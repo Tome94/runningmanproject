@@ -1,5 +1,5 @@
 const initialState = {
-  currentTurn: 0,
+  currentTurn: 1,
 };
 //turn reducer
 export const turnReducer = (state = initialState, action) => {
@@ -8,10 +8,8 @@ export const turnReducer = (state = initialState, action) => {
       console.log("endturn")
       return {
         ...state,
-        currentTurn: state.currentTurn === 1 ? 2 : state.currentTurn === 2 ? 1 : state.currentTurn,
+        currentTurn: state.currentTurn === 1 ? 2 : 1
       };
-      
-
     default:
       return state;
   }

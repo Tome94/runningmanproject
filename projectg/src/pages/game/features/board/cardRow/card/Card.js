@@ -1,7 +1,6 @@
 import React from 'react';
 // Add import statements below
 import {useSelector, useDispatch} from 'react-redux'
-import { endTurn } from '../../../turns/turn';
 import {selectVisibleIDs, flipCard, selectMatchedIDs, resetCards} from '../../boardSlice'
 
 let cardLogo = "https://static-assets.codecademy.com/Courses/Learn-Redux/matching-game/codecademy_logo.png";

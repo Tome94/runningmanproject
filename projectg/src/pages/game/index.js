@@ -5,6 +5,7 @@ import { Board } from './features/board/Board';
 // Add import statements below
 import {useDispatch} from 'react-redux'
 import {setBoard, resetCards} from './features/board/boardSlice'
+import { endTurn } from './features/turns/turn';
 
 
 const Game = () => {
@@ -18,7 +19,7 @@ const Game = () => {
 
   const tryAgainHandler = () => {
     // Add action dispatch below
-    dispatch(resetCards())
+    dispatch(endTurn())
   };
 
   return (
@@ -30,7 +31,7 @@ const Game = () => {
           Start Game
         </button>
         <button onClick={tryAgainHandler} className="try-new-pair-button">
-          Try New Pair
+          Next Team Turn 
         </button>
       </footer>
     </div>

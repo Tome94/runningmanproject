@@ -5,12 +5,14 @@ const initialState = {
     {
       id: generateId(),
       name: 'Tommy',
+      score: 0
     },
   ],
   team2Players: [
     {
       id: generateId(),
       name: 'John',
+      score: 0
     },
   ],
 };
@@ -49,6 +51,15 @@ export const teamReducer = (state = initialState, action) => {
         };
       }
       break;
+      case 'UPDATE_TEAM_SCORE':
+        const { teamID, newScore } = action.payload;
+        return {
+          ...state,
+          [`team${teamID}Players`]: {
+            ...state[`team${teamID}Players`],
+            score: newScore,
+          },
+        };
     default:
       return state;
   }

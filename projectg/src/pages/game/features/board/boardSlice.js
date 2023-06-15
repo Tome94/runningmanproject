@@ -1,17 +1,17 @@
 
 const initialState = [
-  {id: 0, contents: 'Provider', visible: true, matched: true}, 
-  {id: 1, contents: 'Provider', visible: true, matched: true}, 
-  {id: 2, contents: 'selector', visible: true, matched: true}, 
-  {id: 3, contents: 'selector', visible: true, matched: true}, 
-  {id: 4, contents: 'useSelector()', visible: true, matched: true}, 
-  {id: 5, contents: 'useSelector()', visible: true, matched: true}, 
-  {id: 6, contents: 'useDispatch()', visible: true, matched: true}, 
-  {id: 7, contents: 'useDispatch()', visible: true, matched: true}, 
-  {id: 8, contents: 'Pure Function', visible: true, matched: true}, 
-  {id: 9, contents: 'Pure Function', visible: true, matched: true}, 
-  {id: 10, contents: 'react-redux', visible: true, matched: true}, 
-  {id: 11, contents: 'react-redux', visible: true, matched: true}, 
+  {id: 0, contents: 'Provider', visible: true, matched: true, teamMatch:0}, 
+  {id: 1, contents: 'Provider', visible: true, matched: true, teamMatch:0}, 
+  {id: 2, contents: 'selector', visible: true, matched: true, teamMatch:0}, 
+  {id: 3, contents: 'selector', visible: true, matched: true, teamMatch:0}, 
+  {id: 4, contents: 'useSelector()', visible: true, matched: true, teamMatch:0}, 
+  {id: 5, contents: 'useSelector()', visible: true, matched: true, teamMatch:0}, 
+  {id: 6, contents: 'useDispatch()', visible: true, matched: true, teamMatch:0}, 
+  {id: 7, contents: 'useDispatch()', visible: true, matched: true, teamMatch:0}, 
+  {id: 8, contents: 'Pure Function', visible: true, matched: true, teamMatch:0}, 
+  {id: 9, contents: 'Pure Function', visible: true, matched: true, teamMatch:0}, 
+  {id: 10, contents: 'react-redux', visible: true, matched: true, teamMatch:0}, 
+  {id: 11, contents: 'react-redux', visible: true, matched: true, teamMatch:0}, 
 ];
 export const boardReducer = (state = initialState, action) => {
 
@@ -43,9 +43,19 @@ export const boardReducer = (state = initialState, action) => {
       } 
 
       return flipState;
+      
     case 'board/resetCards':
       return state.map(card => ({...card, visible: false}));
     
+      case 'board/addTeamMatch':
+        const { teamID, cardsMatched } = action.payload;
+        return state.map((card) => {
+          if (cardsMatched.includes(card.id)) {
+            return { ...card, teamMatch: teamID };
+          }
+          return card;
+        });
+  
     default:
       return state;
   }
@@ -95,7 +105,12 @@ export const resetCards = (indices) => {
     type: 'board/resetCards'
   }
 }
-
+export const addTeamMatch = (teamID, cardsMatched) => {
+  return {
+    type: 'board/addTeamMatch',
+    payload: { teamID, cardsMatched },
+  };
+};
 // Add selector export statments below
 export const selectBoard = state => state.board.map(card=>({id: card.id, contents: card.contents}))
 
