@@ -3,8 +3,9 @@ import React from 'react';
 import {useSelector, useDispatch} from 'react-redux'
 import { selectCurrentTurn } from '../../../turns/turn';
 import {selectVisibleIDs, flipCard, selectMatchedIDs, resetCards} from '../../boardSlice'
+import cardLogo from './runningmanlogo.png';
 
-let cardLogo = "https://static-assets.codecademy.com/Courses/Learn-Redux/matching-game/codecademy_logo.png";
+
 
 export const Card = ({ id, contents }) => {
   // Add selected data and dispatch variables below
@@ -27,9 +28,10 @@ export const Card = ({ id, contents }) => {
   let cardStyle = 'resting'
   let click = () => flipHandler(id, teamID);
   
-  let cardText = (
-    <img src={cardLogo} className="logo-placeholder" alt="Card option" />
-  );
+  //let cardText = <img src={cardLogo} className="logo-placeholder" alt="Card option" />
+  let cardText = <img src={cardLogo} className="logo-placeholder" alt="Card option" />;
+
+  ;
 
   // 1st if statement
   // implement card id array membership check

@@ -1,24 +1,38 @@
-body {
+html {
   margin: 0;
-  font-size: 16pt;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
-input,
-button {
-  font: inherit;
-  box-sizing: border-box;
+* {
+  font-family: "Oxygen", sans-serif;
+  font-weight: bold;
 }
 
-input[type="submit"],
-button {
-  cursor: pointer;
+.header h1 {
+  display: flex;
+  justify-content: left;
+  color: #4fe0b0;
 }
 
+.nav-links {
+  color: white;
+  background: #235fb3;
+  text-decoration: none;
+  border-radius: 18px;
+  padding: 6px 24px;
+  font-size: 18px;
+  display: flex;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: 40px 8px;
+  justify-content: space-evenly;
+  width: 100%;
+  padding: 0 32px;
+}
+.nav-links h2 {
+  color: #f2f2f2;
+}
 .Team {
   margin: 0 auto;
   max-width: 600px;
@@ -45,7 +59,16 @@ button {
   flex-grow: 1;
   margin-right: 0.5rem;
 }
+input,
+button {
+  font: inherit;
+  box-sizing: border-box;
+}
 
+input[type="submit"],
+button {
+  cursor: pointer;
+}
 .players {
   list-style-type: none;
   padding: 0;
@@ -69,16 +92,6 @@ button {
 .Player .remove-button:hover {
   color: #fff;
   background-color: #000;
-}
-@import url("https://fonts.googleapis.com/css2?family=Oxygen:wght@700&display=swap");
-
-html {
-  margin: 0;
-}
-
-* {
-  font-family: "Oxygen", sans-serif;
-  font-weight: bold;
 }
 
 .card {
@@ -107,7 +120,11 @@ html {
   width: fit-content;
   padding: 24px 0 33px 0;
 }
-
+.card.resting {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .card.selected {
   background-color: initial;
   color: #141c3a;
@@ -123,7 +140,8 @@ html {
 }
 
 .logo-placeholder {
-  width: 120px;
+  width: 90%;
+  height: 165%;
 }
 
 .score-container {
