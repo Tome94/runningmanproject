@@ -4,7 +4,7 @@ import { Score } from './features/score/Score';
 import { Board } from './features/board/Board';
 // Add import statements below
 import {useDispatch} from 'react-redux'
-import {setBoard, resetCards} from './features/board/boardSlice'
+import {setBoard} from './features/board/boardSlice'
 import { endTurn } from './features/turns/turn';
 
 

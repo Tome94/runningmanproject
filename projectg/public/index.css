@@ -6,17 +6,10 @@ html {
   font-family: "Oxygen", sans-serif;
   font-weight: bold;
 }
-
-.header h1 {
-  display: flex;
-  justify-content: left;
-  color: #4fe0b0;
-}
-
 .nav-links {
   color: white;
   background: #235fb3;
-  text-decoration: none;
+
   border-radius: 18px;
   padding: 6px 24px;
   font-size: 18px;
@@ -26,12 +19,13 @@ html {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   grid-gap: 40px 8px;
-  justify-content: space-evenly;
+  text-align: center;
   width: 100%;
   padding: 0 32px;
 }
-.nav-links h2 {
+.nav-links .grid h2 {
   color: #f2f2f2;
+  text-decoration: none !important;
 }
 .Team {
   margin: 0 auto;
@@ -93,7 +87,22 @@ button {
   color: #fff;
   background-color: #000;
 }
+.button-link {
+  display: inline-block;
+  background-color: #0056b3;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+  width: 600px;
+}
 
+.button-link:hover {
+  background-color: #007bff;
+}
+.button-link h2 {
+  text-align: center;
+}
 .card {
   padding: 20px 0;
   text-align: center;
@@ -104,6 +113,9 @@ button {
   cursor: pointer;
   height: 75px;
   font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .card:hover,
@@ -120,11 +132,7 @@ button {
   width: fit-content;
   padding: 24px 0 33px 0;
 }
-.card.resting {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+
 .card.selected {
   background-color: initial;
   color: #141c3a;
