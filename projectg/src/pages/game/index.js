@@ -5,7 +5,7 @@ import { Board } from './features/board/Board';
 // Add import statements below
 import {useDispatch} from 'react-redux'
 import {setBoard} from './features/board/boardSlice'
-import { endTurn } from './features/turns/turn';
+import { endTurn, startMatch } from './features/turns/turn';
 
 
 const Game = () => {
@@ -14,7 +14,7 @@ const Game = () => {
 
   const startGameHandler = () => {
     // Add action dispatch below
-    dispatch(setBoard())
+    dispatch(startMatch())
   };
 
   const tryAgainHandler = () => {

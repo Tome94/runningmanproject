@@ -3,9 +3,8 @@ import React from 'react';
 import {useSelector, useDispatch} from 'react-redux'
 import { selectCurrentTurn } from '../../../turns/turn';
 import {selectVisibleIDs, flipCard, selectMatchedIDs, resetCards} from '../../boardSlice'
-import cardLogo from './runningmanlogo.png';
-
-
+import cardLogo from './runningmanlogo.png'
+import { endTurn } from '../../../turns/turn';
 
 export const Card = ({ id, contents }) => {
   // Add selected data and dispatch variables below
@@ -18,13 +17,16 @@ export const Card = ({ id, contents }) => {
     // Add action dispatch below
     dispatch(flipCard(id, teamID))
   };
-  const EndTurnHandler = () => {
+  const ResetCardHandler = () => {
     // Add action dispatch below
     
     setTimeout(()=>{
       dispatch(resetCards())
     },2000)
   };
+  const EndTurn = () => {
+    dispatch(endTurn())
+  }
   let cardStyle = 'resting'
   let click = () => flipHandler(id, teamID);
   
@@ -54,8 +56,8 @@ export const Card = ({ id, contents }) => {
   //turn the not match red
   if (visibleIDs.length >= 2 && !matchedIDs.includes(id)){
     cardStyle = 'no-match'
-    EndTurnHandler()
-    
+    ResetCardHandler()
+    click = EndTurn();
   }
   return (
     <button onClick={click} className={`card ${cardStyle}`}>

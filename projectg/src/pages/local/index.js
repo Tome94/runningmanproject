@@ -4,6 +4,7 @@ import { addPlayer, removePlayer } from './Actions';
 import { AddPlayerForm } from './AddPlayerForm';
 import { Player } from './Player';
 import { Link } from 'react-router-dom';
+import { setBoard } from '../game/features/board/boardSlice';
 
 export default function Team() {
   const team1Players = useSelector((state) => state.team.team1Players);
@@ -25,7 +26,10 @@ export default function Team() {
       dispatch(removePlayer(playerIdToRemove, teamNumber));
     }
   };
-
+  const setGameHandler = () => {
+    // Add action dispatch below
+    dispatch(setBoard())
+  };
   return (
     <div className="Team">
       <header>
@@ -65,7 +69,7 @@ export default function Team() {
       </main>
 
       <footer>
-        <Link to="/game" className='button-link'>
+        <Link to="/draw" className='button-link' onClick={setGameHandler}>
           <h2>Play</h2>
         </Link>
       </footer>

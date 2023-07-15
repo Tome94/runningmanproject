@@ -185,3 +185,25 @@ button {
 .try-new-pair-button:focus {
   background-color: #7d1aff;
 }
+.canvas {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 50px;
+  /* Adjust the height as needed */
+}
+
+canvas {
+  border: 1px solid black;
+  /* Add any additional styling for the canvas */
+}
+
+.buttons {
+  margin-top: 10px; /* Adjust the margin as needed */
+}
+
+.draw-erase,
+.clear-canvas {
+  margin-right: 10px; /* Adjust the margin as needed */
+}

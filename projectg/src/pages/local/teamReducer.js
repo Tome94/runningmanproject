@@ -1,19 +1,9 @@
-import { generateId } from './utilities';
-
 const initialState = {
   team1Players: [
-    {
-      id: generateId(),
-      name: 'Tommy',
-      score: 0
-    },
+
   ],
   team2Players: [
-    {
-      id: generateId(),
-      name: 'John',
-      score: 0
-    },
+
   ],
 };
 
@@ -53,6 +43,7 @@ export const teamReducer = (state = initialState, action) => {
       break;
       case 'UPDATE_TEAM_SCORE':
         const { teamID, newScore } = action.payload;
+        //console.log(teamID, newScore)
         return {
           ...state,
           [`team${teamID}Players`]: {
@@ -64,3 +55,8 @@ export const teamReducer = (state = initialState, action) => {
       return state;
   }
 };
+export const selectTeam1PlayerNames = (state) =>
+state.team.team1Players.map((player) => player.name);
+
+export const selectTeam2PlayerNames = (state) =>
+state.team.team2Players.map((player) => player.name);

@@ -1,17 +1,17 @@
 
 const initialState = [
-  {id: 0, contents: 'Provider', visible: true, matched: true, teamMatch:0}, 
-  {id: 1, contents: 'Provider', visible: true, matched: true, teamMatch:0}, 
-  {id: 2, contents: 'selector', visible: true, matched: true, teamMatch:0}, 
-  {id: 3, contents: 'selector', visible: true, matched: true, teamMatch:0}, 
-  {id: 4, contents: 'useSelector()', visible: true, matched: true, teamMatch:0}, 
-  {id: 5, contents: 'useSelector()', visible: true, matched: true, teamMatch:0}, 
-  {id: 6, contents: 'useDispatch()', visible: true, matched: true, teamMatch:0}, 
-  {id: 7, contents: 'useDispatch()', visible: true, matched: true, teamMatch:0}, 
-  {id: 8, contents: 'Pure Function', visible: true, matched: true, teamMatch:0}, 
-  {id: 9, contents: 'Pure Function', visible: true, matched: true, teamMatch:0}, 
-  {id: 10, contents: 'react-redux', visible: true, matched: true, teamMatch:0}, 
-  {id: 11, contents: 'react-redux', visible: true, matched: true, teamMatch:0}, 
+  {id: 0, contents: '', visible: true, matched: true, teamMatch:0}, 
+  {id: 1, contents: '', visible: true, matched: true, teamMatch:0}, 
+  {id: 2, contents: '', visible: true, matched: true, teamMatch:0}, 
+  {id: 3, contents: '', visible: true, matched: true, teamMatch:0}, 
+  {id: 4, contents: '', visible: true, matched: true, teamMatch:0}, 
+  {id: 5, contents: '', visible: true, matched: true, teamMatch:0}, 
+  {id: 6, contents: '', visible: true, matched: true, teamMatch:0}, 
+  {id: 7, contents: '', visible: true, matched: true, teamMatch:0}, 
+  {id: 8, contents: '', visible: true, matched: true, teamMatch:0}, 
+  {id: 9, contents: '', visible: true, matched: true, teamMatch:0}, 
+  {id: 10, contents: '', visible: true, matched: true, teamMatch:0}, 
+  {id: 11, contents: '', visible: true, matched: true, teamMatch:0}, 
 ];
 export const boardReducer = (state = initialState, action) => {
 
@@ -25,6 +25,7 @@ export const boardReducer = (state = initialState, action) => {
                       matched: false,
                       teamMatch: 0})
       );
+      //console.log(this.state.contents)
       return setState;
     case 'board/flipCard':
       let flipState = [...state];
@@ -48,17 +49,8 @@ export const boardReducer = (state = initialState, action) => {
     case 'board/resetCards':
       return state.map(card => ({...card, visible: false}));
     
-     /* case 'board/addTeamMatch':
-        const { teamID, cardsMatched } = action.payload;
-        return state.map((card) => {
-          if (cardsMatched.includes(card.id)) {
-            return { ...card, teamMatch: teamID };
-          }
-          return card;
-        });
-  */
     default:
-      console.log('Current state:', state);
+      //console.log('Current state:', state);
       return state;
   }
 }
@@ -72,6 +64,7 @@ const wordPairs = [
   'react-redux', 'react-redux',
 ]
 
+/*
 const randomWords = () => {
   let words = []
   let newWordPairs = [...wordPairs]
@@ -83,7 +76,40 @@ const randomWords = () => {
   }
 
   return words;
-} 
+} */
+const nouns = [
+  'apple', 'banana', 'car', 'dog', 'elephant', 'flower', 'guitar', 'hat', 'ice cream', 'jacket', 'key', 'lion',
+  'moon', 'notebook', 'orange', 'pizza', 'queen', 'rabbit', 'sun', 'tree', 'umbrella', 'violin', 'watermelon', 'xylophone', 'yogurt', 'zebra'
+];
+
+const randomWords = () => {
+  let words = [];
+  let newNouns = [...nouns];
+
+  const pairs = 6; // Number of word pairs (half of the desired words count)
+  for (let i = 0; i < pairs; i++) {
+    const nounIndex = Math.floor(Math.random() * newNouns.length);
+
+    const noun = newNouns[nounIndex];
+    words.push(noun);
+
+    newNouns.splice(nounIndex, 1);
+  }
+
+  // Duplicate the words array to form matching pairs
+  words = words.concat([...words]);
+
+  // Shuffle the words array to randomize their placement
+  for (let i = words.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [words[i], words[j]] = [words[j], words[i]];
+  }
+
+  return words;
+};
+
+
+
 
 // action creators
 export const setBoard = () => {
@@ -102,7 +128,7 @@ export const flipCard = (cardID,teamID) => {
 }
 
 export const resetCards = (indices) => {
-  console.log('reseting')
+  //console.log('reseting')
   return {
     type: 'board/resetCards'
   }
