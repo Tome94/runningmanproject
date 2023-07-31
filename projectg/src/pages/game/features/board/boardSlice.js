@@ -1,60 +1,81 @@
-
 const initialState = [
-  {id: 0, contents: '', visible: true, matched: true, teamMatch:0}, 
-  {id: 1, contents: '', visible: true, matched: true, teamMatch:0}, 
-  {id: 2, contents: '', visible: true, matched: true, teamMatch:0}, 
-  {id: 3, contents: '', visible: true, matched: true, teamMatch:0}, 
-  {id: 4, contents: '', visible: true, matched: true, teamMatch:0}, 
-  {id: 5, contents: '', visible: true, matched: true, teamMatch:0}, 
-  {id: 6, contents: '', visible: true, matched: true, teamMatch:0}, 
-  {id: 7, contents: '', visible: true, matched: true, teamMatch:0}, 
-  {id: 8, contents: '', visible: true, matched: true, teamMatch:0}, 
-  {id: 9, contents: '', visible: true, matched: true, teamMatch:0}, 
-  {id: 10, contents: '', visible: true, matched: true, teamMatch:0}, 
-  {id: 11, contents: '', visible: true, matched: true, teamMatch:0}, 
+  { id: 0, contents: "", visible: true, matched: true, teamMatch: 0 },
+  { id: 1, contents: "", visible: true, matched: true, teamMatch: 0 },
+  { id: 2, contents: "", visible: true, matched: true, teamMatch: 0 },
+  { id: 3, contents: "", visible: true, matched: true, teamMatch: 0 },
+  { id: 4, contents: "", visible: true, matched: true, teamMatch: 0 },
+  { id: 5, contents: "", visible: true, matched: true, teamMatch: 0 },
+  { id: 6, contents: "", visible: true, matched: true, teamMatch: 0 },
+  { id: 7, contents: "", visible: true, matched: true, teamMatch: 0 },
+  { id: 8, contents: "", visible: true, matched: true, teamMatch: 0 },
+  { id: 9, contents: "", visible: true, matched: true, teamMatch: 0 },
+  { id: 10, contents: "", visible: true, matched: true, teamMatch: 0 },
+  { id: 11, contents: "", visible: true, matched: true, teamMatch: 0 },
 ];
 export const boardReducer = (state = initialState, action) => {
-
   switch (action.type) {
-    case 'board/setBoard':
+    case "board/setBoard":
       let setState = [];
-      action.payload.forEach((element, index) => 
-        setState.push({id: index, 
-                      contents: element, 
-                      visible: false, 
-                      matched: false,
-                      teamMatch: 0})
+      action.payload.forEach((element, index) =>
+        setState.push({
+          id: index,
+          contents: element,
+          visible: false,
+          matched: false,
+          teamMatch: 0,
+        })
       );
-      //console.log(this.state.contents)
+      console.log(setState.map((card) => card.contents));
+
       return setState;
-    case 'board/flipCard':
+    case "board/flipCard":
       let flipState = [...state];
-      const {cardID, teamID} = action.payload;
-      flipState[cardID] = {...state[cardID], visible:true}
-      
+      const { cardID, teamID } = action.payload;
+      flipState[cardID] = { ...state[cardID], visible: true };
+
       const [index1, index2] = flipState
-        .filter(card => card.visible)
-        .map(card => card.id);
-      if (index2 !== undefined){
+        .filter((card) => card.visible)
+        .map((card) => card.id);
+      if (index2 !== undefined) {
         const card1 = flipState[index1];
         const card2 = flipState[index2];
         if (card1.contents === card2.contents) {
-          flipState[index1] = {...card1, visible: false, matched: true, teamMatch:teamID}
-          flipState[index2] = {...card2, visible: false, matched: true, teamMatch:teamID}
+          flipState[index1] = {
+            ...card1,
+            visible: false,
+            matched: true,
+            teamMatch: teamID,
+          };
+          flipState[index2] = {
+            ...card2,
+            visible: false,
+            matched: true,
+            teamMatch: teamID,
+          };
         }
-      } 
+      }
 
       return flipState;
-      
-    case 'board/resetCards':
-      return state.map(card => ({...card, visible: false}));
-    
+
+    case "board/resetCards":
+      return state.map((card) => ({ ...card, visible: false }));
+
+    case "draw/displayWords":
+      let displayState = [...state];
+      const chosenWords = action.payload;
+
+      for (let i = 0; i < chosenWords.length; i++) {
+        displayState[i].contents = chosenWords[i];
+      }
+
+      return displayState;
+
     default:
       //console.log('Current state:', state);
       return state;
   }
-}
-
+};
+/*
 const wordPairs = [
   'Provider', 'Provider', 
   'selector', 'selector', 
@@ -64,7 +85,6 @@ const wordPairs = [
   'react-redux', 'react-redux',
 ]
 
-/*
 const randomWords = () => {
   let words = []
   let newWordPairs = [...wordPairs]
@@ -78,11 +98,34 @@ const randomWords = () => {
   return words;
 } */
 const nouns = [
-  'apple', 'banana', 'car', 'dog', 'elephant', 'flower', 'guitar', 'hat', 'ice cream', 'jacket', 'key', 'lion',
-  'moon', 'notebook', 'orange', 'pizza', 'queen', 'rabbit', 'sun', 'tree', 'umbrella', 'violin', 'watermelon', 'xylophone', 'yogurt', 'zebra'
+  "apple",
+  "banana",
+  "car",
+  "dog",
+  "elephant",
+  "flower",
+  "guitar",
+  "hat",
+  "ice cream",
+  "jacket",
+  "key",
+  "lion",
+  "moon",
+  "notebook",
+  "orange",
+  "pizza",
+  "queen",
+  "rabbit",
+  "sun",
+  "tree",
+  "umbrella",
+  "violin",
+  "watermelon",
+  "xylophone",
+  "yogurt",
+  "zebra",
 ];
-
-const randomWords = () => {
+const chooseWords = () => {
   let words = [];
   let newNouns = [...nouns];
 
@@ -96,6 +139,10 @@ const randomWords = () => {
     newNouns.splice(nounIndex, 1);
   }
 
+  return words;
+};
+
+const shuffleWords = (words) => {
   // Duplicate the words array to form matching pairs
   words = words.concat([...words]);
 
@@ -108,50 +155,56 @@ const randomWords = () => {
   return words;
 };
 
-
-
+const randomWords = () => {
+  const chosenWords = chooseWords();
+  const shuffledWords = shuffleWords(chosenWords);
+  return shuffledWords;
+};
 
 // action creators
 export const setBoard = () => {
-  const words = randomWords()
+  const words = randomWords();
   return {
-    type: 'board/setBoard',
-    payload: words
-  }
-}
-
-export const flipCard = (cardID,teamID) => {
+    type: "board/setBoard",
+    payload: words,
+  };
+};
+export const displayChosenWords = () => {
+  const chosenWords = chooseWords();
   return {
-    type: 'board/flipCard',
-    payload: {cardID, teamID}
-  }
-}
+    type: "draw/displayWords",
+    payload: chosenWords,
+  };
+};
+export const flipCard = (cardID, teamID) => {
+  return {
+    type: "board/flipCard",
+    payload: { cardID, teamID },
+  };
+};
 
 export const resetCards = (indices) => {
   //console.log('reseting')
   return {
-    type: 'board/resetCards'
-  }
-}
+    type: "board/resetCards",
+  };
+};
 export const addTeamMatch = (teamID, cardsMatched) => {
   return {
-    type: 'board/addTeamMatch',
+    type: "board/addTeamMatch",
     payload: { teamID, cardsMatched },
   };
 };
 // Add selector export statments below
-export const selectBoard = state => state.board.map(card=>({id: card.id, contents: card.contents}))
+export const selectBoard = (state) =>
+  state.board.map((card) => ({ id: card.id, contents: card.contents }));
 
-export const selectVisibleIDs = state => state.board
-.filter(card => card.visible)
-.map(card => card.id)
+export const selectVisibleIDs = (state) =>
+  state.board.filter((card) => card.visible).map((card) => card.id);
 
-export const selectMatchedIDs = state => state.board
-.filter(card => card.matched)
-.map(card => card.id)
-export const selectTeamOneMatchIds = state => state.board
-.filter(card => card.teamMatch === 1)
-.map(card => card.id)
-export const selectTeamTwoMatchIds = state => state.board
-.filter(card => card.teamMatch === 2)
-.map(card => card.id)
+export const selectMatchedIDs = (state) =>
+  state.board.filter((card) => card.matched).map((card) => card.id);
+export const selectTeamOneMatchIds = (state) =>
+  state.board.filter((card) => card.teamMatch === 1).map((card) => card.id);
+export const selectTeamTwoMatchIds = (state) =>
+  state.board.filter((card) => card.teamMatch === 2).map((card) => card.id);

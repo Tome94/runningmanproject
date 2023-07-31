@@ -5,7 +5,7 @@ import Instructions from './pages/how-to-play';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Team from './pages/local';
 import Game from './pages/game';
-import CanvasComponent from './pages/canvas';
+import Draw from './pages/canvas/index';
 
 function App() {
   return (
@@ -16,7 +16,7 @@ function App() {
       <Navigation/>
       <main>
         <Routes>
-          <Route path="/draw" element={<CanvasComponent/>} />
+          <Route path="/draw" element={<Draw/>} />
           <Route path="/game" element={<Game/>} />
         <Route path="/local" element={<Team/>} />
           <Route path="/instructions" element={<Instructions/>} />
