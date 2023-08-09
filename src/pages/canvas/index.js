@@ -11,13 +11,15 @@ const Draw = () => {
       setRemainingTime((prevTime) => {
         return prevTime === 1 ? 15 : prevTime - 1;
       });
+      
     }, 1000);
+    
   };
 
   return (
     <div className="Game">
       <DisplayWordsComponent remainingTime={remainingTime} />
-      <CanvasComponent startTimer={startTimer} intervalRef={intervalRef} />
+      <CanvasComponent startTimer={startTimer} intervalRef={intervalRef} remainingTime={remainingTime}/>
     </div>
   );
 };

@@ -1,5 +1,5 @@
 {
-  "homepage": "https://tome94.github.io/runningmanproject/",
+  "homepage": "https://Tome94.github.io/runningmanproject/",
   "name": "projectg",
   "version": "0.1.0",
   "private": true,
@@ -23,6 +23,7 @@
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
+    
   },
   "eslintConfig": {
     "extends": [

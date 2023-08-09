@@ -68,11 +68,11 @@ export default function Team() {
         </ul>
       </main>
 
-      <footer>
+      <div className='playButton'>
         <Link to="/draw" className='button-link' onClick={setGameHandler}>
           <h2>Play</h2>
         </Link>
-      </footer>
+      </div>
     </div>
   );
 }

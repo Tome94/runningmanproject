@@ -4,17 +4,23 @@ import { Link } from 'react-router-dom';
 import { startMatch } from '../game/features/turns/turn';
 import { useDispatch } from 'react-redux';
 
-const CanvasComponent = ({ startTimer, intervalRef }) => {
+const CanvasComponent = ({ startTimer, intervalRef, remainingTime }) => {
   const canvasRef = useRef(null);
   const [isDrawing, setIsDrawing] = useState(false);
   const [isEraserMode, setIsEraserMode] = useState(false);
   const [lastX, setLastX] = useState(0);
   const [lastY, setLastY] = useState(0);
-
+  const [isTimerStarted, setIsTimerStarted] = useState(false);
   const handleMouseDown = (e) => {
-    startDrawing(isDrawing, setIsDrawing, setLastX, setLastY, e);
-    startTimer(); // Start the timer on mousedown
-  };
+    if (!isDrawing) {
+      startDrawing(isDrawing, setIsDrawing, setLastX, setLastY, e);
+      
+      if (!isTimerStarted) {
+        startTimer(); // Start the timer on the first mousedown
+        setIsTimerStarted(true); // Set the timer started flag to true
+      }
+    }
+  };  
 
   const handleMouseMove = (e) => {
     draw(isDrawing, isEraserMode, lastX, lastY, setLastX, setLastY, e, canvasRef.current);
@@ -52,10 +58,24 @@ const CanvasComponent = ({ startTimer, intervalRef }) => {
   };
 
   useEffect(() => {
+    const currentIntervalRef = intervalRef.current; // Capture the current value
     return () => {
-      clearInterval(intervalRef.current); // Clear the interval on unmount
+      clearInterval(currentIntervalRef); // Clear the interval on unmount
     };
-  }, [intervalRef]); // Empty dependency array ensures the effect runs only once (on component mount)
+  }, [intervalRef]); // Make sure to include intervalRef in the dependency array
+  
+  const saveAndClearCanvas = () => {
+    saveCanvasDrawing(); // Save the canvas drawing
+    toggleClearCanvas(); // Clear the canvas
+  };
+
+  // This useEffect runs whenever the timer reaches 1
+  useEffect(() => {
+    if (remainingTime === 1) {
+      saveAndClearCanvas();
+    }
+  }, [remainingTime]);
+
 
   return (
     <div className='canvas'>
