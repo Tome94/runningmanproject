@@ -2,9 +2,9 @@
 import React from 'react';
 import { Score } from './features/score/Score';
 import { Board } from './features/board/Board';
+import Test from './features/board/test';
 // Add import statements below
 import {useDispatch} from 'react-redux'
-import {setBoard} from './features/board/boardSlice'
 import { endTurn, startMatch } from './features/turns/turn';
 
 
@@ -26,6 +26,7 @@ const Game = () => {
     <div className="Game">
       <Score />
       <Board />
+      <Test/>
       <footer className="footer">
         <button onClick={startGameHandler} className="start-button">
           Start Game

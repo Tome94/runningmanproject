@@ -3,6 +3,7 @@ import { startDrawing, draw, stopDrawing, clearCanvas } from './canvasUtils';
 import { Link } from 'react-router-dom';
 import { startMatch } from '../game/features/turns/turn';
 import { useDispatch } from 'react-redux';
+import { addCanvasDrawing } from './canvasDrawingSlice';
 
 const CanvasComponent = ({ startTimer, intervalRef, remainingTime }) => {
   const canvasRef = useRef(null);
@@ -48,7 +49,7 @@ const CanvasComponent = ({ startTimer, intervalRef, remainingTime }) => {
     const context = canvas.getContext('2d');
     const imageData = canvas.toDataURL(); // Get the base64 encoded image data
     // Now, you can do whatever you want with the captured drawing data, e.g., send it to a server, save it in state, etc.
-    console.log('Drawing saved:', imageData);
+    dispatch(addCanvasDrawing(imageData));
   };
 
   const dispatch = useDispatch();
@@ -98,11 +99,11 @@ const CanvasComponent = ({ startTimer, intervalRef, remainingTime }) => {
         <button onClick={saveCanvasDrawing}>Save Drawing</button>
       </div>
 
-      <footer>
+      <div className='playButton'>
         <Link to='/game' className='button-link' onClick={startGameHandler}>
           <h2>Next</h2>
         </Link>
-      </footer>
+      </div>
     </div>
   );
 };
