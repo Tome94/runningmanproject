@@ -1,9 +1,14 @@
+import { generateId } from './utilities';
 const initialState = {
   team1Players: [
-
+{      id: generateId(),
+  name: "tommy",
+  score: 0}
   ],
   team2Players: [
-
+{      id: generateId(),
+  name: "saba",
+  score: 0}
   ],
 };
 

@@ -6,7 +6,7 @@ import {selectVisibleIDs, flipCard, selectMatchedIDs, resetCards} from '../../bo
 import cardLogo from './runningmanlogo.png'
 import { endTurn } from '../../../turns/turn';
 
-export const Card = ({ id, contents }) => {
+export const Card = ({ id, contents, image }) => {
   // Add selected data and dispatch variables below
   const visibleIDs = useSelector(selectVisibleIDs)
   const matchedIDs = useSelector(selectMatchedIDs)
@@ -30,15 +30,18 @@ export const Card = ({ id, contents }) => {
   let cardStyle = 'resting'
   let click = () => flipHandler(id, teamID);
   
-  //let cardText = <img src={cardLogo} className="logo-placeholder" alt="Card option" />
+  // this is the the card back with the running man logo
   let cardText = <img src={cardLogo} className="logo-placeholder" alt="Card option" />;
-
-  ;
-
+  const card = useSelector(state => state.board.find(card => card.id === id));
+  let imageClass = 'card-image';
   // 1st if statement
   // implement card id array membership check
   if (visibleIDs.includes(id) || matchedIDs.includes(id)) {
-    cardText = contents;
+    if (card.image) {
+      cardText = <img src={card.image} className={imageClass} alt={`Card`} />;
+    } else {
+      cardText = contents;
+    }
     click = () => {};
   }
 
@@ -60,6 +63,7 @@ export const Card = ({ id, contents }) => {
     click = EndTurn();
   }
   return (
+    
     <button onClick={click} className={`card ${cardStyle}`}>
       {cardText}
     </button>

@@ -2,8 +2,9 @@ import React, { useRef, useState, useEffect } from 'react';
 import { startDrawing, draw, stopDrawing, clearCanvas } from './canvasUtils';
 import { Link } from 'react-router-dom';
 import { startMatch } from '../game/features/turns/turn';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addCanvasDrawing } from './canvasDrawingSlice';
+import { setImage } from '../game/features/board/boardSlice';
 
 const CanvasComponent = ({ startTimer, intervalRef, remainingTime }) => {
   const canvasRef = useRef(null);
@@ -12,6 +13,7 @@ const CanvasComponent = ({ startTimer, intervalRef, remainingTime }) => {
   const [lastX, setLastX] = useState(0);
   const [lastY, setLastY] = useState(0);
   const [isTimerStarted, setIsTimerStarted] = useState(false);
+  const canvasDrawings = useSelector(state => state.canvasDrawings);
   const handleMouseDown = (e) => {
     if (!isDrawing) {
       startDrawing(isDrawing, setIsDrawing, setLastX, setLastY, e);
@@ -49,13 +51,16 @@ const CanvasComponent = ({ startTimer, intervalRef, remainingTime }) => {
     const context = canvas.getContext('2d');
     const imageData = canvas.toDataURL(); // Get the base64 encoded image data
     // Now, you can do whatever you want with the captured drawing data, e.g., send it to a server, save it in state, etc.
+    
     dispatch(addCanvasDrawing(imageData));
   };
 
   const dispatch = useDispatch();
+  
   const startGameHandler = () => {
     // Add action dispatch below
     dispatch(startMatch());
+    dispatch(setImage(canvasDrawings))
   };
 
   useEffect(() => {

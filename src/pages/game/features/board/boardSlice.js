@@ -1,17 +1,19 @@
+
 const initialState = [
-  { id: 0, contents: "", visible: true, matched: true, teamMatch: 0 },
-  { id: 1, contents: "", visible: true, matched: true, teamMatch: 0 },
-  { id: 2, contents: "", visible: true, matched: true, teamMatch: 0 },
-  { id: 3, contents: "", visible: true, matched: true, teamMatch: 0 },
-  { id: 4, contents: "", visible: true, matched: true, teamMatch: 0 },
-  { id: 5, contents: "", visible: true, matched: true, teamMatch: 0 },
-  { id: 6, contents: "", visible: true, matched: true, teamMatch: 0 },
-  { id: 7, contents: "", visible: true, matched: true, teamMatch: 0 },
-  { id: 8, contents: "", visible: true, matched: true, teamMatch: 0 },
-  { id: 9, contents: "", visible: true, matched: true, teamMatch: 0 },
-  { id: 10, contents: "", visible: true, matched: true, teamMatch: 0 },
-  { id: 11, contents: "", visible: true, matched: true, teamMatch: 0 },
+  { id: 0, contents: "", image: null, visible: true, matched: true, teamMatch: 0 },
+  { id: 1, contents: "", image: null, visible: true, matched: true, teamMatch: 0 },
+  { id: 2, contents: "", image: null, visible: true, matched: true, teamMatch: 0 },
+  { id: 3, contents: "", image: null, visible: true, matched: true, teamMatch: 0 },
+  { id: 4, contents: "", image: null, visible: true, matched: true, teamMatch: 0 },
+  { id: 5, contents: "", image: null, visible: true, matched: true, teamMatch: 0 },
+  { id: 6, contents: "", image: null, visible: true, matched: true, teamMatch: 0 },
+  { id: 7, contents: "", image: null, visible: true, matched: true, teamMatch: 0 },
+  { id: 8, contents: "", image: null, visible: true, matched: true, teamMatch: 0 },
+  { id: 9, contents: "", image: null, visible: true, matched: true, teamMatch: 0 },
+  { id: 10, contents: "", image: null, visible: true, matched: true, teamMatch: 0 },
+  { id: 11, contents: "", image: null, visible: true, matched: true, teamMatch: 0 },
 ];
+
 export const boardReducer = (state = initialState, action) => {
   switch (action.type) {
     case "board/setBoard":
@@ -26,8 +28,16 @@ export const boardReducer = (state = initialState, action) => {
         })
       );
       console.log(setState.map((card) => card.contents));
-
+console.log('Current state:', setState);
       return setState;
+      case "board/setImage":
+        const updatedState = state.map((card, index) => ({
+          ...card,
+          image: action.payload[index], // Assuming payload contains images in the same order as cards
+        }));
+        console.log('Current state:', updatedState);
+        return updatedState;
+      
     case "board/flipCard":
       let flipState = [...state];
       const { cardID, teamID } = action.payload;
@@ -71,7 +81,6 @@ export const boardReducer = (state = initialState, action) => {
       return displayState;
 
     default:
-      //console.log('Current state:', state);
       return state;
   }
 };
@@ -169,6 +178,12 @@ export const setBoard = () => {
     payload: words,
   };
 };
+export const setImage = (imageData) => {
+  return {
+    type: "board/setImage",
+    payload: imageData
+  }
+}
 export const displayChosenWords = () => {
   const chosenWords = chooseWords();
   return {
