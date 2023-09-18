@@ -63,20 +63,19 @@ export const Score = () => {
   }, [teamID]);
 
   return (
-    <div className="score-board">
+    <div className="score-container">
       {isMatchOver ? (
         <div className="result">
-          <h2>Match Result:</h2>
-          {winner}
+          <h2>Match Result: {winner}</h2>
         </div>
       ) : (
-        <div className="score-container">
+        <div className="score">
           <br />
           {currentTeamID === 1 && (
-            <span>Turn: Team 1 || Score: {team1score}</span>
+            <h2>Turn: Team 1 || Score: {team1score}</h2>
           )}
           {currentTeamID === 2 && (
-            <span>Turn: Team 2 || Score: {team2score}</span>
+            <h2>Turn: Team 2 || Score: {team2score}</h2>
           )}
         </div>
       )}

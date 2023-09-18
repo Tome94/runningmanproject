@@ -2,8 +2,9 @@ import React from 'react';
 
 const About = () => {
   return (
-    <div>
-      <h2>About this Project</h2>
+    <div className='page'>
+    <div className='about-container'>
+      <h1>Running Man Project</h1>
       <p>
         Welcome to the "Running Man Project"! As an individual passionate about programming, I was inspired by the Korean variety show "Running Man" to create this fun and entertaining web application. 
       </p>
@@ -19,6 +20,7 @@ const About = () => {
       <p>
         Thank you for joining this journey, and I hope you have a fantastic time playing the Running Man games with your friends!
       </p>
+    </div>
     </div>
   );
 };

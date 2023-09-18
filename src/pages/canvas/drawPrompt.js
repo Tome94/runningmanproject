@@ -39,17 +39,16 @@ const DisplayWordsComponent = ({ remainingTime }) => {
   }
 
   return (
-    <div>
-      <h2>Displaying Words:</h2>
-      <h3>Team {currentTeam} Words:</h3>
-      <ul>
+    <div className='word-container'>
+      <h2>Team {currentTeam} Words:</h2>
+      <h2>
         {board.map((card, index) => (
           <li key={card.id} style={{ display: index === currentWordIndex ? 'list-item' : 'none' }}>
             {card.contents}
           </li>
         ))}
-      </ul>
-      <p>Time Remaining: {remainingTime} seconds</p>
+        </h2>
+      <h2>Time Remaining: {remainingTime} seconds</h2>
     </div>
   );
 };

@@ -1,5 +1,6 @@
 :root {
   --primary-color: #67b1c6;
+  --secondary-color: rgb(247, 247, 174);
 }
 html {
   margin: 0;
@@ -10,8 +11,16 @@ html {
   font-weight: bold;
   text-decoration: none !important;
 }
+h1,
+h2,
+h3,
+p {
+  color: var(--secondary-color);
+}
+
+/* nav bar */
 .nav-links {
-  border: 1px solid var(--primary-color);
+  border: 2px solid var(--primary-color);
   background-color: transparent;
   border-radius: 30px;
   color: var(--primary-color);
@@ -35,15 +44,16 @@ html {
 .nav-links .grid h2 {
   color: var(--primary-color);
 }
+/* local Team */
 .Team {
   margin: 0 auto;
   max-width: 600px;
   width: 95%;
-}
-
-.Team h1:before {
-  content: "💭";
-  margin-right: 0.5em;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  background-color: var(--primary-color);
 }
 
 .AddPlayerForm {
@@ -115,8 +125,8 @@ button {
   text-align: center;
   border-radius: 6px;
   border: solid 1px #141c3a;
-  background-color: #141c3a;
-  color: white;
+  background-color: white;
+  color: black;
   cursor: pointer;
   height: 120px;
   width: 160px;
@@ -128,7 +138,7 @@ button {
 
 .card:hover,
 .card:focus {
-  background-color: #dddee5;
+  background-color: white;
 }
 
 .cards-container {
@@ -155,21 +165,23 @@ button {
 }
 
 .card.matched {
-  color: #4fe0b0;
+  border-width: 5px;
+  border-color: green;
 }
 
 .card.no-match {
-  color: #fd4d3f;
+  border-width: 5px;
+  border-color: red;
 }
 
 .logo-placeholder {
   width: 100%;
   height: 115%;
 }
-
+/* score container */
 .score-container {
-  background-color: #f2f2f2;
-  padding: 18px 158px 23px 159px;
+  background-color: #868f89;
+
   text-align: center;
   font-size: 32px;
 }
@@ -200,6 +212,18 @@ button {
 .try-new-pair-button:focus {
   background-color: #7d1aff;
 }
+/*word-container */
+.word-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #787878;
+  padding: 10px;
+}
+.word-container h2 {
+  margin-right: 50px;
+}
+/* canvas */
 .canvas {
   display: flex;
   flex-direction: column;
@@ -210,7 +234,8 @@ button {
 }
 
 canvas {
-  border: 1px solid black;
+  border: 2px solid var(--primary-color);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
   /* Add any additional styling for the canvas */
 }
 
@@ -236,4 +261,33 @@ canvas {
 button.primary {
   background-color: var(--primary-color);
   color: white;
+}
+/* Instructions*/
+.page {
+  padding-top: 50px;
+}
+.instructions-container {
+  width: 600px; /* Adjust the width as needed */
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  margin: 0 auto; /* Center the container horizontally */
+  background-color: var(
+    --primary-color
+  ); /* Background color for the container */
+}
+.main {
+  padding-top: 100px;
+}
+.about-container {
+  width: 1000px; /* Adjust the width as needed */
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  margin: 0 auto; /* Center the container horizontally */
+  background-color: var(
+    --primary-color
+  ); /* Background color for the container */
 }

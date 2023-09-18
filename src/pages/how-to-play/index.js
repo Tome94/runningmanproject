@@ -9,8 +9,8 @@ const Instructions = () => {
     navigate(-1);
   }
   return (
-    <div classname="page">
-      <div classname="instructions">
+    <div className="page">
+      <div className="instructions-container">
         <h1>How to Play</h1>
         <div className="steps">
           <ul>

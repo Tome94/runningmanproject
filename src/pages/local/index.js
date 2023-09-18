@@ -31,6 +31,7 @@ export default function Team() {
     dispatch(setBoard())
   };
   return (
+    <div className='page'>
     <div className="Team">
       <header>
         <h1>Team 1</h1>
@@ -73,6 +74,7 @@ export default function Team() {
           <h2>Play</h2>
         </Link>
       </div>
+    </div>
     </div>
   );
 }

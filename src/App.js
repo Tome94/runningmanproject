@@ -11,9 +11,6 @@ import About from './pages/about/about';
 function App() {
   return (
     <Router>
-      <header>
-        <h1>Project running man </h1>
-      </header>
       <Navigation/>
       <main>
         <Routes>
