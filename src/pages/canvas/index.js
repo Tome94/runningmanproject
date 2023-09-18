@@ -4,12 +4,12 @@ import DisplayWordsComponent from "./drawPrompt";
 
 const Draw = () => {
   const intervalRef = useRef(null);
-  const [remainingTime, setRemainingTime] = useState(15);
+  const [remainingTime, setRemainingTime] = useState(5);
 
   const startTimer = () => {
     intervalRef.current = setInterval(() => {
       setRemainingTime((prevTime) => {
-        return prevTime === 1 ? 15 : prevTime - 1;
+        return prevTime === 1 ? 5 : prevTime - 1;
       });
       
     }, 1000);

@@ -14,7 +14,7 @@ const DisplayWordsComponent = ({ remainingTime }) => {
     const team2Words = board.filter((_, index) => index % 2 === 1);
     const teamsHaveWords = team1Words.length > 0 || team2Words.length > 0;
 
-    setGameFinished(currentWordIndex === board.length - 1);
+    setGameFinished(currentWordIndex === board.length-1);
 
     if (teamsHaveWords) {
       if (remainingTime === 1) {
