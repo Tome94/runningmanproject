@@ -1,3 +1,7 @@
+:root {
+  --primary-color: #67b1c6;
+  --secondary-color: rgb(247, 247, 174);
+}
 html {
   margin: 0;
 }
@@ -5,15 +9,29 @@ html {
 * {
   font-family: "Oxygen", sans-serif;
   font-weight: bold;
+  text-decoration: none !important;
 }
-.nav-links {
-  color: white;
-  background: #235fb3;
+h1,
+h2,
+h3,
+p {
+  color: var(--secondary-color);
+}
 
+/* nav bar */
+.nav-links {
+  border: 2px solid var(--primary-color);
+  background-color: transparent;
+  border-radius: 30px;
+  color: var(--primary-color);
   border-radius: 18px;
   padding: 6px 24px;
   font-size: 18px;
   display: flex;
+}
+.nav-links.primary {
+  background-color: var(--primary-color);
+  color: white;
 }
 .grid {
   display: grid;
@@ -24,18 +42,18 @@ html {
   padding: 0 32px;
 }
 .nav-links .grid h2 {
-  color: #f2f2f2;
-  text-decoration: none !important;
+  color: var(--primary-color);
 }
+/* local Team */
 .Team {
   margin: 0 auto;
   max-width: 600px;
   width: 95%;
-}
-
-.Team h1:before {
-  content: "💭";
-  margin-right: 0.5em;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  background-color: var(--primary-color);
 }
 
 .AddPlayerForm {
@@ -91,7 +109,6 @@ button {
   display: inline-block;
   background-color: #0056b3;
   color: #fff;
-  text-decoration: none;
   border-radius: 4px;
   transition: background-color 0.3s ease;
   width: 600px;
@@ -104,14 +121,15 @@ button {
   text-align: center;
 }
 .card {
-  padding: 20px 0;
+  padding: 20px 20px;
   text-align: center;
   border-radius: 6px;
   border: solid 1px #141c3a;
-  background-color: #141c3a;
-  color: white;
+  background-color: white;
+  color: black;
   cursor: pointer;
-  height: 75px;
+  height: 120px;
+  width: 160px;
   font-size: 16px;
   display: flex;
   align-items: center;
@@ -120,17 +138,24 @@ button {
 
 .card:hover,
 .card:focus {
-  background-color: #2e4085;
+  background-color: white;
 }
 
 .cards-container {
   display: grid;
-  grid-template-columns: repeat(3, 138px);
+  grid-template-columns: repeat(3, 160px);
   grid-auto-rows: 1fr;
   gap: 16px 16px;
   margin: 0 auto;
   width: fit-content;
   padding: 24px 0 33px 0;
+}
+
+.card-image {
+  max-width: 100%;
+  max-height: 100%;
+  display: block; /* This ensures the image respects its container's dimensions */
+  margin: auto; /* Centers the image horizontally within the button */
 }
 
 .card.selected {
@@ -140,21 +165,23 @@ button {
 }
 
 .card.matched {
-  color: #4fe0b0;
+  border-width: 5px;
+  border-color: green;
 }
 
 .card.no-match {
-  color: #fd4d3f;
+  border-width: 5px;
+  border-color: red;
 }
 
 .logo-placeholder {
-  width: 90%;
-  height: 165%;
+  width: 100%;
+  height: 115%;
 }
-
+/* score container */
 .score-container {
-  background-color: #f2f2f2;
-  padding: 18px 158px 23px 159px;
+  background-color: #868f89;
+
   text-align: center;
   font-size: 32px;
 }
@@ -185,6 +212,18 @@ button {
 .try-new-pair-button:focus {
   background-color: #7d1aff;
 }
+/*word-container */
+.word-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #787878;
+  padding: 10px;
+}
+.word-container h2 {
+  margin-right: 50px;
+}
+/* canvas */
 .canvas {
   display: flex;
   flex-direction: column;
@@ -195,7 +234,8 @@ button {
 }
 
 canvas {
-  border: 1px solid black;
+  border: 2px solid var(--primary-color);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
   /* Add any additional styling for the canvas */
 }
 
@@ -206,4 +246,48 @@ canvas {
 .draw-erase,
 .clear-canvas {
   margin-right: 10px; /* Adjust the margin as needed */
+}
+.back button {
+  border: 1px solid var(--primary-color);
+  background-color: transparent;
+  border-radius: 30px;
+  color: var(--primary-color);
+  font-size: 16px;
+  padding: 9px 36px;
+  height: fit-content;
+  cursor: pointer;
+}
+
+button.primary {
+  background-color: var(--primary-color);
+  color: white;
+}
+/* Instructions*/
+.page {
+  padding-top: 50px;
+}
+.instructions-container {
+  width: 600px; /* Adjust the width as needed */
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  margin: 0 auto; /* Center the container horizontally */
+  background-color: var(
+    --primary-color
+  ); /* Background color for the container */
+}
+.main {
+  padding-top: 100px;
+}
+.about-container {
+  width: 1000px; /* Adjust the width as needed */
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  margin: 0 auto; /* Center the container horizontally */
+  background-color: var(
+    --primary-color
+  ); /* Background color for the container */
 }

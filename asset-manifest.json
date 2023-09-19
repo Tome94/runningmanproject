@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/runningmanproject/static/css/main.abd64e84.css",
-    "main.js": "/runningmanproject/static/js/main.01aad818.js",
+    "main.js": "/runningmanproject/static/js/main.e4bd8cdf.js",
     "static/js/787.403ffbee.chunk.js": "/runningmanproject/static/js/787.403ffbee.chunk.js",
     "index.html": "/runningmanproject/index.html",
     "main.abd64e84.css.map": "/runningmanproject/static/css/main.abd64e84.css.map",
-    "main.01aad818.js.map": "/runningmanproject/static/js/main.01aad818.js.map",
+    "main.e4bd8cdf.js.map": "/runningmanproject/static/js/main.e4bd8cdf.js.map",
     "787.403ffbee.chunk.js.map": "/runningmanproject/static/js/787.403ffbee.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.abd64e84.css",
-    "static/js/main.01aad818.js"
+    "static/js/main.e4bd8cdf.js"
   ]
 }
